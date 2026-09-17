@@ -38,8 +38,9 @@ Resultado: train 14,320 filas con 0.0916 de positivos, test 3,578 con 0.0914. Qu
 
 En la primera capa se calcula `Z1 = W1 · X + b1`. Cuando llegue el backward prop ([[04 La red#Paso 4: dW1 y db1]]), el gradiente de esos pesos es:
 
-$$dW_1 = \frac{1}{m} \, dZ_1 \, X^T$$
-
+$$
+dW_1 = \frac{1}{m} \, dZ_1 \, X^T
+$$
 La `X` está ahí al final. **El gradiente de cada peso es proporcional al valor de la feature que multiplica.** Si `dm_skewness` vale ~1000 e `ip_kurtosis` vale ~1, el peso de la primera recibe un gradiente mil veces más grande.
 
 Ejemplo con dos features y pesos iniciales de 0.01:
@@ -64,8 +65,9 @@ Si los dos valieran alrededor de 1, `dw1 ≈ dw2 ≈ 0.5`, y un solo learning ra
 
 Para cada feature $j$, con $\mu_j$ y $\sigma_j$ calculadas sobre train:
 
-$$x'_j = \frac{x_j - \mu_j}{\sigma_j}$$
-
+$$
+x'_j = \frac{x_j - \mu_j}{\sigma_j}
+$$
 Restar la media centra en 0, dividir por la desviación deja dispersión 1. Después de esto todas las features viven en "cuántas desviaciones estándar me alejo del promedio".
 
 ```python

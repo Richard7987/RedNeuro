@@ -18,8 +18,9 @@ Accuracy es `(TP + TN) / total`. Con 3,251 negativos y 327 positivos en test, el
 
 ## Las tres métricas de la clase positiva
 
-$$\text{precision} = \frac{TP}{TP + FP} \qquad \text{recall} = \frac{TP}{TP + FN} \qquad F_1 = \frac{2 \cdot P \cdot R}{P + R}$$
-
+$$
+\text{precision} = \frac{TP}{TP + FP} \qquad \text{recall} = \frac{TP}{TP + FN} \qquad F_1 = \frac{2 \cdot P \cdot R}{P + R}
+$$
 Precision: de los que llamé púlsar, ¿cuántos lo eran? Recall: de los púlsares reales, ¿cuántos encontré? Tiran en direcciones opuestas: si bajas el umbral, subes recall y bajas precision. El modelo "siempre 0" tiene recall 0 y ahí se delata.
 
 F1 es la media **armónica**, no la aritmética, a propósito. Castiga el desbalance entre las dos: precision 1.0 y recall 0.1 dan F1 de 0.18, no de 0.55. Para que F1 sea alto, las dos tienen que serlo.

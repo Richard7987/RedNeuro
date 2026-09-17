@@ -26,12 +26,18 @@ def rewrite_hub_links(text):
     return re.sub(rf"\[\[{re.escape(HUB)}(#[^\]|]*)?\]\]", repl, text)
 
 
+def block_math(text):
+    # Obsidian muestra `$$f$$` en una sola línea como bloque centrado, pero el parser de
+    # Quartz lo toma como matemática inline. Con los $$ en líneas propias sí es bloque.
+    return re.sub(r"^\$\$(.+?)\$\$\s*$", r"$$\n\1\n$$", text, flags=re.M)
+
+
 def main():
     if CONTENT.exists():
         shutil.rmtree(CONTENT)
     CONTENT.mkdir(parents=True)
     for note in sorted(VAULT.glob("*.md")):
-        text = rewrite_hub_links(note.read_text())
+        text = block_math(rewrite_hub_links(note.read_text()))
         if note.stem == HUB:
             text = re.sub(r"^---\n", f"---\ntitle: {HUB}\n", text, count=1)
             dest = CONTENT / "index.md"

@@ -60,8 +60,9 @@ Sigmoid es el cambio. Aplasta cualquier real a (0, 1): `z = 0` da 0.5, `z = 3` d
 
 Softmax con dos entradas:
 
-$$p_1 = \frac{e^{z_1}}{e^{z_1} + e^{z_2}} = \frac{1}{1 + e^{z_2 - z_1}} = \text{sigmoid}(z_1 - z_2)$$
-
+$$
+p_1 = \frac{e^{z_1}}{e^{z_1} + e^{z_2}} = \frac{1}{1 + e^{z_2 - z_1}} = \text{sigmoid}(z_1 - z_2)
+$$
 Softmax de dos clases **es** sigmoid de la diferencia. Las dos neuronas solo importan a través de su resta, así que una sobra. Con una sola salida hay la mitad de parámetros en `W2` y `b2`, la probabilidad de la otra clase es `1 − A2`, y no se pierde nada.
 
 ```python
@@ -83,12 +84,14 @@ Con la red sin entrenar: `A2` con media 0.61, 49% de `A1` en cero (ReLU apagando
 
 Si el modelo dice que la probabilidad de púlsar es `a`, para un ejemplo con etiqueta `y` la probabilidad que asigna a lo que realmente pasó es:
 
-$$P(y \mid a) = a^y (1-a)^{1-y}$$
-
+$$
+P(y \mid a) = a^y (1-a)^{1-y}
+$$
 Si `y = 1` queda `a`; si `y = 0` queda `1 − a`. Un buen modelo asigna alta probabilidad a lo que sí pasó. Logaritmo (productos en sumas, no cambia el máximo) y signo cambiado (minimizar en vez de maximizar):
 
-$$L = -\frac{1}{m} \sum_i \left[ y_i \log a_i + (1 - y_i) \log(1 - a_i) \right]$$
-
+$$
+L = -\frac{1}{m} \sum_i \left[ y_i \log a_i + (1 - y_i) \log(1 - a_i) \right]
+$$
 ### Qué hace en números
 
 Con `y = 1`:
@@ -135,12 +138,14 @@ Cuatro gradientes, de atrás hacia adelante con la regla de la cadena.
 
 Para un ejemplo, con `a = sigmoid(z)`:
 
-$$\frac{\partial L}{\partial a} = -\left[\frac{y}{a} - \frac{1-y}{1-a}\right] \qquad \frac{\partial a}{\partial z} = a(1-a)$$
-
+$$
+\frac{\partial L}{\partial a} = -\left[\frac{y}{a} - \frac{1-y}{1-a}\right] \qquad \frac{\partial a}{\partial z} = a(1-a)
+$$
 La derivada de sigmoid vale verla una vez: si `a = 1/(1+e^(−z))`, entonces `da/dz = e^(−z)/(1+e^(−z))² = a(1−a)`. Multiplicando:
 
-$$\frac{\partial L}{\partial z} = -\left[\frac{y}{a} - \frac{1-y}{1-a}\right] a(1-a) = -[y(1-a) - (1-y)a] = a - y$$
-
+$$
+\frac{\partial L}{\partial z} = -\left[\frac{y}{a} - \frac{1-y}{1-a}\right] a(1-a) = -[y(1-a) - (1-y)a] = a - y
+$$
 Todo se cancela. Vectorizado: `dZ2 = A2 − Y`.
 
 En el original es `dZ2 = A2 − one_hot_Y`, y la derivación con softmax + cross-entropy llega al mismo `a − y`. No es casualidad: BCE es CE de dos clases. Lo único que desaparece es el `one_hot`, porque `Y` ya tiene shape `(1, m)` con ceros y unos.
@@ -151,20 +156,23 @@ Para sentirlo: `y = 1`, `a = 0.2` da `dZ2 = −0.8` (hay que subir `z`). `y = 0`
 
 `Z2 = W2 · A1 + b2`. Derivando respecto a `W2`, la entrada `A1` aparece como factor:
 
-$$dW_2 = \frac{1}{m} dZ_2 A_1^T \quad (1, m)(m, n_h) \to (1, n_h) \qquad db_2 = \frac{1}{m} \sum_{\text{cols}} dZ_2$$
-
+$$
+dW_2 = \frac{1}{m} dZ_2 A_1^T \quad (1, m)(m, n_h) \to (1, n_h) \qquad db_2 = \frac{1}{m} \sum_{\text{cols}} dZ_2
+$$
 El `1/m` viene de que la pérdida es un promedio. Idéntico al original.
 
 ### Paso 3: dZ1, propagar el error hacia atrás
 
-$$dA_1 = W_2^T dZ_2 \quad (n_h, 1)(1, m) \to (n_h, m) \qquad dZ_1 = dA_1 * \text{ReLU}'(Z_1)$$
-
+$$
+dA_1 = W_2^T dZ_2 \quad (n_h, 1)(1, m) \to (n_h, m) \qquad dZ_1 = dA_1 * \text{ReLU}'(Z_1)
+$$
 `ReLU'(z)` es 1 donde `z > 0` y 0 donde no. Una neurona que estaba apagada en forward **recibe gradiente cero** para ese ejemplo: no contribuyó a la salida, no tiene nada que corregir. El error pasa de largo y solo llega a las que estaban activas. Idéntico al original.
 
 ### Paso 4: dW1 y db1
 
-$$dW_1 = \frac{1}{m} dZ_1 X^T \quad (n_h, m)(m, 8) \to (n_h, 8) \qquad db_1 = \frac{1}{m} \sum_{\text{cols}} dZ_1$$
-
+$$
+dW_1 = \frac{1}{m} dZ_1 X^T \quad (n_h, m)(m, 8) \to (n_h, 8) \qquad db_1 = \frac{1}{m} \sum_{\text{cols}} dZ_1
+$$
 Ahí está la `X^T` de [[03 Preprocesamiento#Por qué los rangos dispares dañan el gradiente]]. Idéntico al original.
 
 ### Resumen
@@ -201,8 +209,9 @@ Verificado: los cuatro gradientes tienen el shape de su parámetro, y `db2 = 0.5
 
 ## update_params
 
-$$\theta \leftarrow \theta - \alpha \, d\theta$$
-
+$$
+\theta \leftarrow \theta - \alpha \, d\theta
+$$
 para los cuatro parámetros. Si el gradiente dice "la pérdida sube si aumento este peso", el signo menos lo baja. Idéntico al original.
 
 ```python

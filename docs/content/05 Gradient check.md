@@ -11,8 +11,9 @@ Es la prueba que el notebook original no hace, y la razón principal por la que 
 
 La derivada tiene una definición que no necesita regla de la cadena ni saber nada de la red:
 
-$$\frac{\partial L}{\partial \theta} \approx \frac{L(\theta + \varepsilon) - L(\theta - \varepsilon)}{2\varepsilon}$$
-
+$$
+\frac{\partial L}{\partial \theta} \approx \frac{L(\theta + \varepsilon) - L(\theta - \varepsilon)}{2\varepsilon}
+$$
 Tomas **un solo peso**, lo mueves un poquito hacia arriba, calculas la pérdida completa con forward prop, lo mueves hacia abajo, calculas otra vez, divides. Eso es la pendiente. Se repite para cada peso de cada matriz.
 
 Es carísimo: dos forward props por parámetro. Por eso el test usa una red chica (5 ocultas) y 20 ejemplos **aleatorios**. No importa que sean inventados: las derivadas son correctas o no lo son, sin importar los datos. Y así el test no depende de haber descargado el CSV.
@@ -21,8 +22,9 @@ Se usa la diferencia centrada (`+ε` y `−ε`) en vez de solo `+ε` porque su e
 
 ## Cómo comparar
 
-$$\text{error} = \frac{\|g_{num} - g_{ana}\|}{\|g_{num}\| + \|g_{ana}\|}$$
-
+$$
+\text{error} = \frac{\|g_{num} - g_{ana}\|}{\|g_{num}\| + \|g_{ana}\|}
+$$
 Se divide por las normas para que no dependa de la escala. En float64 con `ε = 1e-6`, si las fórmulas están bien el error queda cerca de `1e-9`. Si hay un bug, sale del orden de 1. No hay zona gris.
 
 ## El test

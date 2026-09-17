@@ -1,3 +1,18 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+// Fórmulas en bloque ($$ en líneas propias): centradas, más grandes y con aire
+.katex-display {
+  display: block;
+  text-align: center;
+  margin: 1.6em auto;
+  font-size: 1.3em;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.2em 0;
+}
+
+// Fórmulas inline: apenas por encima del texto para que no se vean diminutas
+p > .katex,
+li > .katex {
+  font-size: 1.08em;
+}
