@@ -5,3 +5,10 @@ __pycache__/
 .pytest_cache/
 .claude/
 result
+
+# sitio de la wiki (Quartz): generado y dependencias de Node
+docs/node_modules/
+docs/public/
+docs/.quartz/
+docs/.quartz-cache/
+docs/tsconfig.tsbuildinfo
