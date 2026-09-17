@@ -1,5 +1,18 @@
 @use "./variables.scss" as *;
 
+// El grafo pinta las aristas con --lightgray, y el tema obsidian-gruvbox la define
+// como su fondo secundario (más oscuro que el fondo en modo oscuro): las líneas
+// quedan invisibles. Se fija a un gris gruvbox visible. La especificidad extra
+// (html:root) hace que gane sobre las reglas :root del tema, cargue antes o después.
+html:root:not([saved-theme="dark"]) {
+  --lightgray: #d5c4a1; // gruvbox light2
+  --gray: #928374;      // gruvbox gray
+}
+html:root[saved-theme="dark"] {
+  --lightgray: #504945; // gruvbox dark2
+  --gray: #928374;
+}
+
 // Fórmulas en bloque ($$ en líneas propias): centradas, más grandes y con aire
 .katex-display {
   display: block;
