@@ -1,7 +1,13 @@
-<!-- MathJax 2 entiende los <script type="math/tex"> que genera kramdown -->
+<!-- GitHub Pages no incluye el motor de matemáticas de kramdown: las fórmulas llegan
+     al HTML como texto entre \[ \] (bloque) o \( \) (inline). MathJax las procesa
+     en el navegador si se le indican esos delimitadores además de $$ y $. -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
-    tex2jax: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
+    tex2jax: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
     "HTML-CSS": { linebreaks: { automatic: true } }
   });
 </script>
