@@ -1,7 +1,6 @@
 ---
 tags: [redneuro, errores, debugging]
 ---
-# Errores y lecciones
 
 Índice: [[index|Red neuronal from scratch]].
 

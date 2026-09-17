@@ -1,7 +1,6 @@
 ---
 tags: [redneuro, preprocesamiento, normalizacion]
 ---
-# 03 Preprocesamiento
 
 Anterior: [[02 Datos HTRU2]]. Siguiente: [[04 La red]]. Índice: [[index|Red neuronal from scratch]].
 

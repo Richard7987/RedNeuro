@@ -1,7 +1,6 @@
 ---
 tags: [redneuro, glosario]
 ---
-# Glosario RedNeuro
 
 Índice: [[index|Red neuronal from scratch]]. Cada término apunta a la nota donde se usa.
 

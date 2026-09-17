@@ -1,7 +1,6 @@
 ---
 tags: [redneuro, testing, gradiente]
 ---
-# 05 Gradient check
 
 Anterior: [[04 La red]]. Siguiente: [[06 Entrenamiento]]. Índice: [[index|Red neuronal from scratch]].
 

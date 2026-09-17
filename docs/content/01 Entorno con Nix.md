@@ -1,7 +1,6 @@
 ---
 tags: [redneuro, nix, entorno]
 ---
-# 01 Entorno con Nix
 
 Volver al índice: [[index|Red neuronal from scratch]]. Siguiente: [[02 Datos HTRU2]].
 

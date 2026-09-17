@@ -1,7 +1,6 @@
 ---
 tags: [redneuro, datos, htru2]
 ---
-# 02 Datos HTRU2
 
 Anterior: [[01 Entorno con Nix]]. Siguiente: [[03 Preprocesamiento]]. Índice: [[index|Red neuronal from scratch]].
 

@@ -1,7 +1,6 @@
 ---
 tags: [redneuro, metricas, desbalance]
 ---
-# 07 Métricas con desbalance
 
 Anterior: [[06 Entrenamiento]]. Siguiente: [[08 Visualización en vivo]]. Índice: [[index|Red neuronal from scratch]].
 

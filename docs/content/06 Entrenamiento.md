@@ -1,7 +1,6 @@
 ---
 tags: [redneuro, entrenamiento, learning-rate]
 ---
-# 06 Entrenamiento
 
 Anterior: [[05 Gradient check]]. Siguiente: [[07 Métricas con desbalance]]. Índice: [[index|Red neuronal from scratch]].
 

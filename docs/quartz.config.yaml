@@ -237,6 +237,8 @@ plugins:
       group: toolbar
   - source: "@quartz-community/breadcrumbs"
     enabled: true
+    options:
+      rootName: Inicio
     layout:
       position: beforeBody
       priority: 5

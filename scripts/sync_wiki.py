@@ -26,6 +26,12 @@ def rewrite_hub_links(text):
     return re.sub(rf"\[\[{re.escape(HUB)}(#[^\]|]*)?\]\]", repl, text)
 
 
+def drop_leading_h1(text):
+    # Las notas empiezan con "# Título" en el cuerpo. Quartz ya muestra el título de la
+    # página encima del contenido, así que ese H1 saldría repetido.
+    return re.sub(r"^(---\n.*?\n---\n)\s*# [^\n]+\n", r"\1", text, count=1, flags=re.S)
+
+
 def block_math(text):
     # Obsidian muestra `$$f$$` en una sola línea como bloque centrado, pero el parser de
     # Quartz lo toma como matemática inline. Con los $$ en líneas propias sí es bloque.
@@ -37,7 +43,7 @@ def main():
         shutil.rmtree(CONTENT)
     CONTENT.mkdir(parents=True)
     for note in sorted(VAULT.glob("*.md")):
-        text = block_math(rewrite_hub_links(note.read_text()))
+        text = block_math(drop_leading_h1(rewrite_hub_links(note.read_text())))
         if note.stem == HUB:
             text = re.sub(r"^---\n", f"---\ntitle: {HUB}\n", text, count=1)
             dest = CONTENT / "index.md"

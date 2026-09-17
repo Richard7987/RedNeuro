@@ -1,7 +1,6 @@
 ---
 tags: [redneuro, visualizacion, matplotlib]
 ---
-# 08 Visualización en vivo
 
 Anterior: [[07 Métricas con desbalance]]. Índice: [[index|Red neuronal from scratch]].
 

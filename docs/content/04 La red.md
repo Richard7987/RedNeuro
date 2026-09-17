@@ -1,7 +1,6 @@
 ---
 tags: [redneuro, forward, backward, matematica]
 ---
-# 04 La red
 
 Anterior: [[03 Preprocesamiento]]. Siguiente: [[05 Gradient check]]. Índice: [[index|Red neuronal from scratch]].
 

@@ -1,7 +1,6 @@
 ---
 tags: [redneuro, comandos, chuleta]
 ---
-# Comandos RedNeuro
 
 Índice: [[index|Red neuronal from scratch]]. Todo se corre desde la raíz del repo (`~/Projects/Redneuro`) y dentro de `nix develop`.
 
