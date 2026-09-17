@@ -3,7 +3,7 @@ configuration:
   pageTitle: RedNeuro
   pageTitleSuffix: ""
   enableSPA: true
-  enablePopovers: true
+  enablePopovers: false
   analytics: null
   locale: es-ES
   baseUrl: richard7987.github.io/RedNeuro
@@ -163,6 +163,30 @@ plugins:
       priority: 50
   - source: "@quartz-community/graph"
     enabled: true
+    options:
+      # solo notas como nodos (sin tags), etiquetas legibles sin hacer zoom
+      localGraph:
+        depth: 1
+        scale: 1.2
+        linkDistance: 45
+        repelForce: 0.6
+        centerForce: 0.3
+        fontSize: 0.85
+        opacityScale: 2
+        showTags: false
+        focusOnHover: false
+        enableRadial: false
+      globalGraph:
+        depth: -1
+        scale: 1.1
+        linkDistance: 70
+        repelForce: 0.9
+        centerForce: 0.25
+        fontSize: 0.9
+        opacityScale: 2.5
+        showTags: false
+        focusOnHover: true
+        enableRadial: false
     layout:
       position: right
       priority: 10
