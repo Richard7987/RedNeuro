@@ -1,0 +1,20 @@
+title: RedNeuro
+description: Red neuronal desde cero con NumPy para clasificar candidatos a púlsar. Cómo se hizo, paso a paso.
+theme: jekyll-theme-minimal
+show_downloads: false
+
+# los enlaces entre .md se convierten a las páginas generadas
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: false
+
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+  input: GFM
+  syntax_highlighter: rouge
+
+exclude:
+  - README.md

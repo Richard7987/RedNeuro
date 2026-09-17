@@ -1,0 +1,16 @@
+<!-- MathJax 2 entiende los <script type="math/tex"> que genera kramdown -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
+    "HTML-CSS": { linebreaks: { automatic: true } }
+  });
+</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML"></script>
+<style>
+  /* el tema minimal fija la columna en 560px; las tablas y el código respiran mejor un poco más anchos */
+  .wrapper { max-width: 1000px; }
+  section { width: 700px; }
+  table { border-collapse: collapse; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 4px 10px; }
+  blockquote { border-left: 3px solid #e0a800; color: #333; padding-left: 12px; }
+</style>
