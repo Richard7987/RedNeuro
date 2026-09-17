@@ -13,3 +13,6 @@ docs/.quartz/
 docs/.quartz-cache/
 docs/quartz/.quartz-cache/
 docs/tsconfig.tsbuildinfo
+
+# caché de nix-direnv
+.direnv/
